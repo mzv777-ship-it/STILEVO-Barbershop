@@ -5,7 +5,7 @@ import { EmotionalProfile, StyleSuggestion, FutureLetter } from "../types";
 // --- TEXT GENERATION HELPERS ---
 
 export const generateEmotionalAnalysis = async (textInput: string): Promise<EmotionalProfile> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
   
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
@@ -36,7 +36,7 @@ export const generateEmotionalAnalysis = async (textInput: string): Promise<Emot
 };
 
 export const generateStyleSuggestions = async (profile: EmotionalProfile): Promise<StyleSuggestion[]> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
 
   const prompt = `На основі цього профілю клієнта (відповідай українською мовою):
   - Настрій: ${profile.mood}
@@ -75,7 +75,7 @@ export const generateStyleSuggestions = async (profile: EmotionalProfile): Promi
 };
 
 export const generateFutureLetter = async (clientName: string, styleName: string, vibe: string): Promise<string> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
   
   const prompt = `Напиши короткий, поетичний "Лист від майбутнього себе" для ${clientName}.
   Вони щойно отримали стиль "${styleName}", який дає вайб "${vibe}".
@@ -200,7 +200,7 @@ export const connectToLiveSession = async (
     systemInstruction?: string,
     customTools?: Tool[]
 ) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
   
   // Audio Context Setup
   const inputAudioContext = new (window.AudioContext || (window as any).webkitAudioContext)({ sampleRate: 16000 });
