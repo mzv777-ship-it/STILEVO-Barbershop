@@ -19,20 +19,19 @@ export default async function handler(
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                {
-                  text:
-                    message ??
-                    'Ти AI-асистент барбершопу STILEVO. Відповідай коротко та по справі.',
-                },
-              ],
-            },
-          ],
-        }),
-      }
-    );
+  contents: [
+    {
+      role: "user",
+      parts: [
+        {
+          text:
+            message ??
+            "Ти AI-асистент барбершопу STILEVO. Відповідай коротко та по справі.",
+        },
+      ],
+    },
+  ],
+}),
 
     const data = await response.json();
 
